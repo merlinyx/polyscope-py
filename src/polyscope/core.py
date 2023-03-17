@@ -113,6 +113,8 @@ def get_bounding_box():
     return np.array(low.as_tuple()), np.array(high.as_tuple())
 
 ### Camera controls
+def get_camera_world_position():
+    psb.get_camera_world_position()
 
 def reset_camera_to_home_view():
     psb.reset_camera_to_home_view()
