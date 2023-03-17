@@ -399,6 +399,30 @@ void bind_imgui_methods(py::module& m) {
         py::arg("str_id"),
         py::arg("dir"));
     m.def(
+        "Image",
+        [](ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1,
+           const ImVec4& tint_col, const ImVec4& border_col) {
+            ImGui::Image(user_texture_id, size, uv0, uv1, tint_col, border_col);
+        },
+        py::arg("user_texture_id"),
+        py::arg("size"),
+        py::arg("uv0") = std::make_tuple(0.f, 0.f),
+        py::arg("uv1") = std::make_tuple(1.f, 1.f),
+        py::arg("tint_col") = std::make_tuple(1.f, 1.f, 1.f, 1.f),
+        py::arg("border_col") = std::make_tuple(0.f, 0.f, 0.f, 0.f));
+    m.def("ImageButton",
+        [](ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0,  const ImVec2& uv1,
+           int frame_padding, const ImVec4& bg_col, const ImVec4& tint_col) {
+            return ImGui::ImageButton(user_texture_id, size, uv0, uv1, frame_padding, bg_col, tint_col);
+        },
+        py::arg("user_texture_id"),
+        py::arg("size"),
+        py::arg("uv0") = std::make_tuple(0.f, 0.f),
+        py::arg("uv1") = std::make_tuple(1.f, 1.f),
+        py::arg("frame_padding") = -1,
+        py::arg("bg_col") = std::make_tuple(0.f, 0.f, 0.f, 0.f),
+        py::arg("tint_col") = std::make_tuple(1.f, 1.f, 1.f, 1.f));
+    m.def(
         "Checkbox",
         [](const char* label, bool v) {
             const auto clicked = ImGui::Checkbox(label, &v);
