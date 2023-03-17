@@ -112,7 +112,7 @@ PYBIND11_MODULE(polyscope_bindings, m) {
   m.def("get_bounding_box", []() { return ps::state::boundingBox; });
 
   // === Camera controls
-  m.def("get_camera_world_position", ps::view::getCameraWorldPosition);
+  m.def("get_camera_world_position", []() { return ps::view::getCameraWorldPosition(); });
   m.def("reset_camera_to_home_view", ps::view::resetCameraToHomeView);
   m.def("look_at", [](glm::vec3 location, glm::vec3 target, bool flyTo) { 
       ps::view::lookAt(location, target, flyTo); 

@@ -114,7 +114,7 @@ def get_bounding_box():
 
 ### Camera controls
 def get_camera_world_position():
-    psb.get_camera_world_position()
+    return psb.get_camera_world_position().as_tuple()
 
 def reset_camera_to_home_view():
     psb.reset_camera_to_home_view()

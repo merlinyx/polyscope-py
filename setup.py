@@ -54,6 +54,9 @@ class CMakeBuild(build_ext):
             cmake_args += ['-DCMAKE_BUILD_TYPE=' + cfg]
             build_args += ['--', '-j3']
 
+        if "arm" in platform.machine():
+            cmake_args += ["-DCMAKE_OSX_ARCHITECTURES=arm64"]
+
         if self.distribution.verbose > 0:
             cmake_args += ['-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON']
 
