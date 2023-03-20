@@ -400,9 +400,9 @@ void bind_imgui_methods(py::module& m) {
         py::arg("dir"));
     m.def(
         "Image",
-        [](ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1,
-           const ImVec4& tint_col, const ImVec4& border_col) {
-            ImGui::Image(user_texture_id, size, uv0, uv1, tint_col, border_col);
+        [](size_t user_texture_id, const Vec2T& size, const Vec2T& uv0, const Vec2T& uv1,
+           const Vec4T& tint_col, const Vec4T& border_col) {
+            ImGui::Image((ImTextureID)user_texture_id, to_vec2(size), to_vec2(uv0), to_vec2(uv1), to_vec4(tint_col), to_vec4(border_col));
         },
         py::arg("user_texture_id"),
         py::arg("size"),
@@ -411,9 +411,9 @@ void bind_imgui_methods(py::module& m) {
         py::arg("tint_col") = std::make_tuple(1.f, 1.f, 1.f, 1.f),
         py::arg("border_col") = std::make_tuple(0.f, 0.f, 0.f, 0.f));
     m.def("ImageButton",
-        [](ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0,  const ImVec2& uv1,
-           int frame_padding, const ImVec4& bg_col, const ImVec4& tint_col) {
-            return ImGui::ImageButton(user_texture_id, size, uv0, uv1, frame_padding, bg_col, tint_col);
+        [](size_t user_texture_id, const Vec2T& size, const Vec2T& uv0,  const Vec2T& uv1,
+           int frame_padding, const Vec4T& bg_col, const Vec4T& tint_col) {
+            return ImGui::ImageButton((ImTextureID)user_texture_id, to_vec2(size), to_vec2(uv0), to_vec2(uv1), frame_padding, to_vec4(bg_col), to_vec4(tint_col));
         },
         py::arg("user_texture_id"),
         py::arg("size"),
